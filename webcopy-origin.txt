@@ -1,0 +1,152 @@
+Uri: https://rigwars.io/
+File Name: C:\Downloaded Web Sites\rigwars.io\index.htm
+Content Type: text/html
+
+Uri: https://rigwars.io/images/favicon.ico
+File Name: C:\Downloaded Web Sites\rigwars.io\images\favicon.ico
+Content Type: image/vnd.microsoft.icon
+
+Uri: https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark@1.0.0/dist/css/bootstrap-dark.min.css
+File Name: C:\Downloaded Web Sites\rigwars.io\npm\@forevolve\bootstrap-dark@1.0.0\dist\css\bootstrap-dark.min.css
+Content Type: text/css
+
+Uri: https://rigwars.io/css/style.css
+File Name: C:\Downloaded Web Sites\rigwars.io\css\style.css
+Content Type: text/css
+
+Uri: https://www.twitch.tv/rigwars
+File Name: C:\Downloaded Web Sites\rigwars.io\rigwars.html
+Content Type: text/html
+
+Uri: https://poocoin.app/tokens/0x3778e7d8365781def978a6ddd658409ea299c1e9
+File Name: C:\Downloaded Web Sites\rigwars.io\tokens\0x3778e7d8365781def978a6ddd658409ea299c1e9.html
+Content Type: text/html
+
+Uri: https://bscscan.com/address/0x3778e7d8365781def978a6ddd658409ea299c1e9
+File Name: C:\Downloaded Web Sites\rigwars.io\address\0x3778e7d8365781def978a6ddd658409ea299c1e9.html
+Content Type: text/html
+
+Uri: https://metamask.io/
+File Name: C:\Downloaded Web Sites\rigwars.io\index-1.htm
+Content Type: text/html
+
+Uri: https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js
+File Name: C:\Downloaded Web Sites\rigwars.io\ajax\libs\jquery\3.3.1\jquery.min.js
+Content Type: application/javascript
+
+Uri: https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js
+File Name: C:\Downloaded Web Sites\rigwars.io\ajax\libs\popper.js\1.12.9\umd\popper.min.js
+Content Type: application/javascript
+
+Uri: https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js
+File Name: C:\Downloaded Web Sites\rigwars.io\bootstrap\4.0.0\js\bootstrap.min.js
+Content Type: application/javascript
+
+Uri: https://use.fontawesome.com/releases/v5.0.10/js/all.js
+File Name: C:\Downloaded Web Sites\rigwars.io\releases\v5.0.10\js\all.js
+Content Type: application/javascript
+
+Uri: https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js
+File Name: C:\Downloaded Web Sites\rigwars.io\ajax\libs\bootstrap-slider\10.0.0\bootstrap-slider.min.js
+Content Type: application/javascript
+
+Uri: https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js
+File Name: C:\Downloaded Web Sites\rigwars.io\npm\js-cookie@2\src\js.cookie.min.js
+Content Type: application/javascript
+
+Uri: https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js
+File Name: C:\Downloaded Web Sites\rigwars.io\npm\web3@latest\dist\web3.min.js
+Content Type: application/javascript
+
+Uri: https://rigwars.io/js/constants/game_constant.js
+File Name: C:\Downloaded Web Sites\rigwars.io\js\constants\game_constant.js
+Content Type: application/javascript
+
+Uri: https://rigwars.io/js/contract/abi.js
+File Name: C:\Downloaded Web Sites\rigwars.io\js\contract\abi.js
+Content Type: application/javascript
+
+Uri: https://rigwars.io/js/web3_helper/web3_checks.js
+File Name: C:\Downloaded Web Sites\rigwars.io\js\web3_helper\web3_checks.js
+Content Type: application/javascript
+
+Uri: https://rigwars.io/js/mathfunc.js
+File Name: C:\Downloaded Web Sites\rigwars.io\js\mathfunc.js
+Content Type: application/javascript
+
+Uri: https://rigwars.io/js/game.js
+File Name: C:\Downloaded Web Sites\rigwars.io\js\game.js
+Content Type: application/javascript
+
+Uri: https://rigwars.io/js/eth_magic.js
+File Name: C:\Downloaded Web Sites\rigwars.io\js\eth_magic.js
+Content Type: application/javascript
+
+Uri: https://rigwars.io/js/buttons.js
+File Name: C:\Downloaded Web Sites\rigwars.io\js\buttons.js
+Content Type: application/javascript
+
+Uri: https://rigwars.io/js/draw_content.js
+File Name: C:\Downloaded Web Sites\rigwars.io\js\draw_content.js
+Content Type: application/javascript
+
+Uri: https://rigwars.io/images/rigwarslogo.png
+File Name: C:\Downloaded Web Sites\rigwars.io\images\rigwarslogo.png
+Content Type: image/png
+
+Uri: https://rigwars.io/images/cloud.png
+File Name: C:\Downloaded Web Sites\rigwars.io\images\cloud.png
+Content Type: image/png
+
+Uri: https://rigwars.io/images/ntel.png
+File Name: C:\Downloaded Web Sites\rigwars.io\images\ntel.png
+Content Type: image/png
+
+Uri: https://rigwars.io/images/gt1040.png
+File Name: C:\Downloaded Web Sites\rigwars.io\images\gt1040.png
+Content Type: image/png
+
+Uri: https://rigwars.io/images/hddminer.png
+File Name: C:\Downloaded Web Sites\rigwars.io\images\hddminer.png
+Content Type: image/png
+
+Uri: https://rigwars.io/images/rx585.png
+File Name: C:\Downloaded Web Sites\rigwars.io\images\rx585.png
+Content Type: image/png
+
+Uri: https://rigwars.io/images/mvidia.png
+File Name: C:\Downloaded Web Sites\rigwars.io\images\mvidia.png
+Content Type: image/png
+
+Uri: https://rigwars.io/images/atti.png
+File Name: C:\Downloaded Web Sites\rigwars.io\images\atti.png
+Content Type: image/png
+
+Uri: https://rigwars.io/images/asic.png
+File Name: C:\Downloaded Web Sites\rigwars.io\images\asic.png
+Content Type: image/png
+
+Uri: https://rigwars.io/images/metamask.png
+File Name: C:\Downloaded Web Sites\rigwars.io\images\metamask.png
+Content Type: image/png
+
+Uri: https://rigwars.io/images/dashboard.png
+File Name: C:\Downloaded Web Sites\rigwars.io\images\dashboard.png
+Content Type: image/png
+
+Uri: https://static.cloudflareinsights.com/beacon.min.js
+File Name: C:\Downloaded Web Sites\rigwars.io\beacon.min.js
+Content Type: text/javascript
+
+Uri: https://rigwars.io/images/ico2.png
+File Name: C:\Downloaded Web Sites\rigwars.io\images\ico2.png
+Content Type: image/png
+
+Uri: https://discord.com/invite/WGDeYS6GMQ
+File Name: C:\Downloaded Web Sites\rigwars.io\invite\WGDeYS6GMQ.html
+Content Type: text/html
+
+Uri: https://unpkg.com/@metamask/legacy-web3@2.0.0/dist/metamask.web3.min.js
+File Name: C:\Downloaded Web Sites\rigwars.io\@metamask\legacy-web3@2.0.0\dist\metamask.web3.min.js
+Content Type: application/javascript
+

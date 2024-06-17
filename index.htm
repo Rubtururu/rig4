@@ -1,0 +1,692 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>RigWars.io | DeFi mining Idle Game</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="RigWars Virtual Mining DeFi game on BSC network">
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+
+
+        <link rel="stylesheet" href="npm/@forevolve/bootstrap-dark@1.0.0/dist/css/bootstrap-dark.min.css">
+
+        <script src="@metamask/legacy-web3@2.0.0/dist/metamask.web3.min.js"></script>
+        <script src="ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script defer="" src="releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+        <script src="ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
+        <script src="npm/js-cookie@2/src/js.cookie.min.js"></script>
+        <script src="npm/web3@latest/dist/web3.min.js"></script>
+
+
+        <script src="js/constants/game_constant.js"></script>
+        <script src="js/contract/abi.js"></script>
+   
+        <script src="js/web3_helper/web3_checks.js"></script>
+        <script src="js/mathfunc.js"></script>
+        <script src="js/game.js"></script>
+        <script src="js/eth_magic.js"></script>
+        <script src="js/buttons.js"></script>
+        <script src="js/draw_content.js"></script>
+        
+        
+
+        <link rel="stylesheet" href="css/style.css">    
+            
+    </head>
+    <body>
+      
+  
+<header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">About</h4>
+              <p class="text-muted">RigWars Virtual Mining Economy Game
+                <br>
+                The first and only DeFi game based around RigCoin which is a 21,000,000,000,000,000,000 (21 T) total supply coin <br> 
+                can be only minted inside RigWars game and can be traded on various exchanges.
+              </p>
+              
+
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Menu</h4>
+              <ul class="list-unstyled">
+                <li><a href="https://t.me/rigwarspassivemining" class="text-white">Telegram</a></li>
+                <li><a href="invite/WGDeYS6GMQ.html" class="text-white">Discord</a></li>
+                <li><a href="rigwars.html" class="text-white">Twitch</a></li>
+                <li><a href="tokens/0x3778e7d8365781def978a6ddd658409ea299c1e9.html" class="text-white">Exchange RIG/BNB</a></li>
+                <li><a href="address/0x3778e7d8365781def978a6ddd658409ea299c1e9.html" class="text-white">Contract(BscScan)</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+          <a href="index.htm" class="navbar-brand d-flex align-items-center">
+             <span><img class="logo" src="images/rigwarslogo.png" alt="RigWars Logo"> </span> 
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main role="main" style="display: none;">
+
+     <div class="container">
+
+                <div class="row">
+                  <div class="minestat col-xl-8">
+                     <div class="mining-anim">
+                      <div class="console-text">
+                        
+                      </div>
+                      <div class="mining-text">
+                        <table class="dos-mining">
+                          <tr>
+                            <td>Prestige Level</td>
+                            <td>Accepted speed</td>
+                            <td>Profitability</td>
+                            <td>Total Balance</td>
+                          </tr> 
+                          <tr>
+                            <td id="prestigelevel">0</td>
+                            <td id="prodPerSec">N/A Hash/s </td>
+                            <td id="prodPerDay">N/A /day</td>
+                            <td id="balance">N/A</td>
+                          </tr> 
+                          <tr>
+                            <td id="nextlevelprestige">Next level: -</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                        </table>
+                      </div>
+
+                      <div class="static-anim">
+                        <div class="network-stat">* RigWars Network *
+                          <ul class="">
+                            <li id="networkhodl" class="">Total Open Supply: </li>
+                            <li id="networkpot" class="">Network HODL: N/A <b>BNB</b></li>
+                            <li id="networkhash" class="">Network hash: 0 Hash/s </li>
+                            <li id="unclaimedpot" class="">Your contract balance: Less than 0.001 <b>BNB</b></li>
+                            <li id="unclaimedICO" class="">Unclaimed ICO <b>BNB</b></li>
+                          </ul>
+                        </div>
+                        <div class="pvp-stat">
+                             <button type="button" style="display: none;" id="debug_prestige" class="btn btn-secondary btn-lg btn-console beauty_button_big">Upgrade Prestige</button>
+                            <button type="button" id="claim_ico_share" class="btn btn-outline-success btn-lg beauty_button_big">Claim ICO Share</button>
+                            <button type="button" id="withdraw1" class="btn btn-outline-warning btn-lg beauty_button_big">Withdraw <b>BNB</b></button>
+                        </div> 
+        
+                      </div>
+
+                     </div>
+
+                     <br> 
+
+                     
+                    <!-- Market Selector
+                    <div class="market_buttons">
+                    <button type="button" id="showrig"  class="btn btn-outline-primary">Mining equipments</button>      
+                    <button type="button" id="showarmy" class="btn btn-outline-primary">Hacking equipments</button>
+                    </div>
+                     Market Selector -->        
+
+                    
+                  </div>
+                                 <div class="col-xl-4 col-md-5">
+                                      <div class="ico_box">
+                                          <h5>Liquidity Provide:</h5>
+                                          <h6>Liquidity Wallet is open, locks in</h6>
+                                          <span class="ico_countdown">-:-:-</span>
+                                                <div class="pull-mid">
+                                                              <button type="button" style="display: none" class="btn btn-danger ico-buy-button">Add RIG to LP</button>
+                                                              <button type="button" id="debug_newico" style="display: none" class="btn btn btn-outline-warning">Start New Round</button>
+
+                                                              <div class="slidecontainer">
+                                                                  <input type="range" min="1" max="100" value="1" class="slider" id="myRange">
+                                                                <div id="left_pct">1%</div><div id="demo">-</div><div id="right_pct">100%</div>
+
+
+                                                                </div>
+                                                </div>
+
+                                                                    
+                                          <div class="ico_pot">n/a RIG</div>
+                                          <div class="ico_pot_under">Total investment<span id="ico_by_you"></span></div>  
+
+                                          <div class="ico_pot_eth">ICO pot equals: n/a <b>BNB</b></div> 
+                                          <div class="ico_pot_yours">Your investment so far: n/a <b>BNB</b></div> 
+                                      </div>
+                                
+                                      <div class="divider_small"></div>
+                                      <button type="button" id="leaderboard" class="btn btn-outline-info btn-lg btn-block beauty_button_big">Leaderboard</button>
+                                      <div class="divider_small"></div>
+                                      <a href="invite/WGDeYS6GMQ.html" target="_blank" class="btn btn-outline-info btn-lg btn-block beauty_button_big">Discord Chat</a>
+
+                                      <debug id="debug">
+                                      <div class="divider_small"></div>
+                                      <button type="button" id="debug_money" class="btn btn-secondary btn-lg btn-block beauty_button_big">Debug money</button>
+                                    </debug>   
+
+                                    </div>
+                </div>
+              </div>   
+
+        
+    <section class="marketplace">      
+       <div class="container">
+
+        <div class="row">
+        <div class="col-8"> 
+              <div class="row">    
+
+              <!-- RIG ITEMS -->
+              <div class="card" style="width: 15.5rem; display: none;" data-card="1-0-1"> <!-- Data: category,id,count, -->
+                <span class="owned_card" style="display: none;" data-owned="1-0" data-owned-count-rig="0"></span> <!-- Data: category,id -->
+                    <img class="card-img-top" src="images/cloud.png" alt="Card image cap">
+                    
+                    <div class="card-body" data-rig-locked="0" style="display: none;">
+                              <h5 class="card-title">Cloud mining</h5> 
+                              <h6 class="card-subtitle mb-2 text-muted">Everyone start somewhere</h6>
+                              <p class="card-text">
+                                Hashrate: <span data-rig-hashrate="1-0-1">1 Hash/s</span> 
+                                <br>
+                                Unlock Cost: <span data-buyrig-unlock-button="0-1">160</span>
+                              </p> 
+                              <button type="button" data-buyrig-unlock-button="0" class="unlock_rig btn btn-success beauty_button_big">Unlock</button>
+                     </div>  
+        
+                    <div class="card-body" data-rig-unlocked="0" style="display: none;">
+                    <h5 class="card-title">Cloud mining</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Everyone start somewhere</h6>
+                      <p class="card-text">
+                      Hashrate: <span data-rig-hashrate="1-0-1">1 Hash/s</span> 
+                        <br>
+                        Cost: <span data-price-next-rig="0-1">32</span>
+                      </p>
+                      <div class="buy_toggle btn-group btn-group-toggle" data-toggle="buttons">
+                          <label data-buyrig-count="0-1" class="btn btn-secondary active ">
+                            <input type="radio" name="options_buy" value="1" autocomplete="off" checked=""> 1x
+                          </label>
+                          <label data-buyrig-count="0-5" class="btn btn-secondary">
+                            <input type="radio" name="options_buy" value="5" autocomplete="off"> 5x
+                          </label>
+                          <label data-buyrig-count="0-1000" class="btn btn-secondary ">
+                            <input type="radio" name="options_buy" value="1000" autocomplete="off"> All
+                          </label>
+        
+                        </div> 
+                      <button type="button" data-buyrig-button="0" class="buy_rig btn btn-success beauty_button_mid">Buy</button>
+                      <button type="button" data-maxrig-button="0" style="display: none" class=" btn btn-outline-success beauty_button_mid">MAX</button>
+                    </div>
+              </div><div class="card" style="width: 15.5rem; display: none;" data-card="1-1-1"> <!-- Data: category,id,count, -->
+                <span class="owned_card" style="display: none;" data-owned="1-1" data-owned-count-rig="1"></span> <!-- Data: category,id -->
+                    <img class="card-img-top" src="images/ntel.png" alt="Card image cap">
+                    
+                    <div class="card-body" data-rig-locked="1" style="display: none;">
+                              <h5 class="card-title">Ntel Spectre</h5> 
+                              <h6 class="card-subtitle mb-2 text-muted">Mine with CPU then,meltdown</h6>
+                              <p class="card-text">
+                                Hashrate: <span data-rig-hashrate="1-1-1">4 Hash/s</span> 
+                                <br>
+                                Unlock Cost: <span data-buyrig-unlock-button="1-1">1280</span>
+                              </p> 
+                              <button type="button" data-buyrig-unlock-button="1" class="unlock_rig btn btn-success beauty_button_big">Unlock</button>
+                     </div>  
+        
+                    <div class="card-body" data-rig-unlocked="1" style="display: none;">
+                    <h5 class="card-title">Ntel Spectre</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Mine with CPU then,meltdown</h6>
+                      <p class="card-text">
+                      Hashrate: <span data-rig-hashrate="1-1-1">4 Hash/s</span> 
+                        <br>
+                        Cost: <span data-price-next-rig="1-1">256</span>
+                      </p>
+                      <div class="buy_toggle btn-group btn-group-toggle" data-toggle="buttons">
+                          <label data-buyrig-count="1-1" class="btn btn-secondary active ">
+                            <input type="radio" name="options_buy" value="1" autocomplete="off" checked=""> 1x
+                          </label>
+                          <label data-buyrig-count="1-5" class="btn btn-secondary">
+                            <input type="radio" name="options_buy" value="5" autocomplete="off"> 5x
+                          </label>
+                          <label data-buyrig-count="1-1000" class="btn btn-secondary ">
+                            <input type="radio" name="options_buy" value="1000" autocomplete="off"> All
+                          </label>
+        
+                        </div> 
+                      <button type="button" data-buyrig-button="1" class="buy_rig btn btn-success beauty_button_mid">Buy</button>
+                      <button type="button" data-maxrig-button="1" style="display: none" class=" btn btn-outline-success beauty_button_mid">MAX</button>
+                    </div>
+              </div><div class="card" style="width: 15.5rem; display: none;" data-card="1-2-1"> <!-- Data: category,id,count, -->
+                <span class="owned_card" style="display: none;" data-owned="1-2" data-owned-count-rig="2"></span> <!-- Data: category,id -->
+                    <img class="card-img-top" src="images/gt1040.png" alt="Card image cap">
+                    
+                    <div class="card-body" data-rig-locked="2" style="display: none;">
+                              <h5 class="card-title">Mvidia GT1040</h5> 
+                              <h6 class="card-subtitle mb-2 text-muted">First GPU let's mine</h6>
+                              <p class="card-text">
+                                Hashrate: <span data-rig-hashrate="1-2-1">64 Hash/s</span> 
+                                <br>
+                                Unlock Cost: <span data-buyrig-unlock-button="2-1">128000</span>
+                              </p> 
+                              <button type="button" data-buyrig-unlock-button="2" class="unlock_rig btn btn-success beauty_button_big">Unlock</button>
+                     </div>  
+        
+                    <div class="card-body" data-rig-unlocked="2" style="display: none;">
+                    <h5 class="card-title">Mvidia GT1040</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">First GPU let's mine</h6>
+                      <p class="card-text">
+                      Hashrate: <span data-rig-hashrate="1-2-1">64 Hash/s</span> 
+                        <br>
+                        Cost: <span data-price-next-rig="2-1">25600</span>
+                      </p>
+                      <div class="buy_toggle btn-group btn-group-toggle" data-toggle="buttons">
+                          <label data-buyrig-count="2-1" class="btn btn-secondary active ">
+                            <input type="radio" name="options_buy" value="1" autocomplete="off" checked=""> 1x
+                          </label>
+                          <label data-buyrig-count="2-5" class="btn btn-secondary">
+                            <input type="radio" name="options_buy" value="5" autocomplete="off"> 5x
+                          </label>
+                          <label data-buyrig-count="2-1000" class="btn btn-secondary ">
+                            <input type="radio" name="options_buy" value="1000" autocomplete="off"> All
+                          </label>
+        
+                        </div> 
+                      <button type="button" data-buyrig-button="2" class="buy_rig btn btn-success beauty_button_mid">Buy</button>
+                      <button type="button" data-maxrig-button="2" style="display: none" class=" btn btn-outline-success beauty_button_mid">MAX</button>
+                    </div>
+              </div><div class="card" style="width: 15.5rem; display: none;" data-card="1-3-1"> <!-- Data: category,id,count, -->
+                <span class="owned_card" style="display: none;" data-owned="1-3" data-owned-count-rig="3"></span> <!-- Data: category,id -->
+                    <img class="card-img-top" src="images/hddminer.png" alt="Card image cap">
+                    
+                    <div class="card-body" data-rig-locked="3" style="display: none;">
+                              <h5 class="card-title">30TB HDD</h5> 
+                              <h6 class="card-subtitle mb-2 text-muted">Burstcoin?!</h6>
+                              <p class="card-text">
+                                Hashrate: <span data-rig-hashrate="1-3-1">512 Hash/s</span> 
+                                <br>
+                                Unlock Cost: <span data-buyrig-unlock-button="3-1">2560000</span>
+                              </p> 
+                              <button type="button" data-buyrig-unlock-button="3" class="unlock_rig btn btn-success beauty_button_big">Unlock</button>
+                     </div>  
+        
+                    <div class="card-body" data-rig-unlocked="3" style="display: none;">
+                    <h5 class="card-title">30TB HDD</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Burstcoin?!</h6>
+                      <p class="card-text">
+                      Hashrate: <span data-rig-hashrate="1-3-1">512 Hash/s</span> 
+                        <br>
+                        Cost: <span data-price-next-rig="3-1">512000</span>
+                      </p>
+                      <div class="buy_toggle btn-group btn-group-toggle" data-toggle="buttons">
+                          <label data-buyrig-count="3-1" class="btn btn-secondary active ">
+                            <input type="radio" name="options_buy" value="1" autocomplete="off" checked=""> 1x
+                          </label>
+                          <label data-buyrig-count="3-5" class="btn btn-secondary">
+                            <input type="radio" name="options_buy" value="5" autocomplete="off"> 5x
+                          </label>
+                          <label data-buyrig-count="3-1000" class="btn btn-secondary ">
+                            <input type="radio" name="options_buy" value="1000" autocomplete="off"> All
+                          </label>
+        
+                        </div> 
+                      <button type="button" data-buyrig-button="3" class="buy_rig btn btn-success beauty_button_mid">Buy</button>
+                      <button type="button" data-maxrig-button="3" style="display: none" class=" btn btn-outline-success beauty_button_mid">MAX</button>
+                    </div>
+              </div><div class="card" style="width: 15.5rem; display: none;" data-card="1-4-1"> <!-- Data: category,id,count, -->
+                <span class="owned_card" style="display: none;" data-owned="1-4" data-owned-count-rig="4"></span> <!-- Data: category,id -->
+                    <img class="card-img-top" src="images/rx585.png" alt="Card image cap">
+                    
+                    <div class="card-body" data-rig-locked="4" style="display: none;">
+                              <h5 class="card-title">Rx 585</h5> 
+                              <h6 class="card-subtitle mb-2 text-muted">AND made it again</h6>
+                              <p class="card-text">
+                                Hashrate: <span data-rig-hashrate="1-4-1">8192 Hash/s</span> 
+                                <br>
+                                Unlock Cost: <span data-buyrig-unlock-button="4-1">51200000</span>
+                              </p> 
+                              <button type="button" data-buyrig-unlock-button="4" class="unlock_rig btn btn-success beauty_button_big">Unlock</button>
+                     </div>  
+        
+                    <div class="card-body" data-rig-unlocked="4" style="display: none;">
+                    <h5 class="card-title">Rx 585</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">AND made it again</h6>
+                      <p class="card-text">
+                      Hashrate: <span data-rig-hashrate="1-4-1">8192 Hash/s</span> 
+                        <br>
+                        Cost: <span data-price-next-rig="4-1">10240000</span>
+                      </p>
+                      <div class="buy_toggle btn-group btn-group-toggle" data-toggle="buttons">
+                          <label data-buyrig-count="4-1" class="btn btn-secondary active ">
+                            <input type="radio" name="options_buy" value="1" autocomplete="off" checked=""> 1x
+                          </label>
+                          <label data-buyrig-count="4-5" class="btn btn-secondary">
+                            <input type="radio" name="options_buy" value="5" autocomplete="off"> 5x
+                          </label>
+                          <label data-buyrig-count="4-1000" class="btn btn-secondary ">
+                            <input type="radio" name="options_buy" value="1000" autocomplete="off"> All
+                          </label>
+        
+                        </div> 
+                      <button type="button" data-buyrig-button="4" class="buy_rig btn btn-success beauty_button_mid">Buy</button>
+                      <button type="button" data-maxrig-button="4" style="display: none" class=" btn btn-outline-success beauty_button_mid">MAX</button>
+                    </div>
+              </div><div class="card" style="width: 15.5rem; display: none;" data-card="1-5-1"> <!-- Data: category,id,count, -->
+                <span class="owned_card" style="display: none;" data-owned="1-5" data-owned-count-rig="5"></span> <!-- Data: category,id -->
+                    <img class="card-img-top" src="images/mvidia.png" alt="Card image cap">
+                    
+                    <div class="card-body" data-rig-locked="5" style="display: none;">
+                              <h5 class="card-title">Mvidia 1090GTX</h5> 
+                              <h6 class="card-subtitle mb-2 text-muted">Best green GPU on the market</h6>
+                              <p class="card-text">
+                                Hashrate: <span data-rig-hashrate="1-5-1">50000 Hash/s</span> 
+                                <br>
+                                Unlock Cost: <span data-buyrig-unlock-button="5-1">15000000000</span>
+                              </p> 
+                              <button type="button" data-buyrig-unlock-button="5" class="unlock_rig btn btn-success beauty_button_big">Unlock</button>
+                     </div>  
+        
+                    <div class="card-body" data-rig-unlocked="5" style="display: none;">
+                    <h5 class="card-title">Mvidia 1090GTX</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Best green GPU on the market</h6>
+                      <p class="card-text">
+                      Hashrate: <span data-rig-hashrate="1-5-1">50000 Hash/s</span> 
+                        <br>
+                        Cost: <span data-price-next-rig="5-1">3000000000</span>
+                      </p>
+                      <div class="buy_toggle btn-group btn-group-toggle" data-toggle="buttons">
+                          <label data-buyrig-count="5-1" class="btn btn-secondary active ">
+                            <input type="radio" name="options_buy" value="1" autocomplete="off" checked=""> 1x
+                          </label>
+                          <label data-buyrig-count="5-5" class="btn btn-secondary">
+                            <input type="radio" name="options_buy" value="5" autocomplete="off"> 5x
+                          </label>
+                          <label data-buyrig-count="5-1000" class="btn btn-secondary ">
+                            <input type="radio" name="options_buy" value="1000" autocomplete="off"> All
+                          </label>
+        
+                        </div> 
+                      <button type="button" data-buyrig-button="5" class="buy_rig btn btn-success beauty_button_mid">Buy</button>
+                      <button type="button" data-maxrig-button="5" style="display: none" class=" btn btn-outline-success beauty_button_mid">MAX</button>
+                    </div>
+              </div><div class="card" style="width: 15.5rem; display: none;" data-card="1-6-1"> <!-- Data: category,id,count, -->
+                <span class="owned_card" style="display: none;" data-owned="1-6" data-owned-count-rig="6"></span> <!-- Data: category,id -->
+                    <img class="card-img-top" src="images/atti.png" alt="Card image cap">
+                    
+                    <div class="card-body" data-rig-locked="6" style="display: none;">
+                              <h5 class="card-title">Atti Vegan 65</h5> 
+                              <h6 class="card-subtitle mb-2 text-muted">Best red GPU on the market</h6>
+                              <p class="card-text">
+                                Hashrate: <span data-rig-hashrate="1-6-1">250000 Hash/s</span> 
+                                <br>
+                                Unlock Cost: <span data-buyrig-unlock-button="6-1">375000000000</span>
+                              </p> 
+                              <button type="button" data-buyrig-unlock-button="6" class="unlock_rig btn btn-success beauty_button_big">Unlock</button>
+                     </div>  
+        
+                    <div class="card-body" data-rig-unlocked="6" style="display: none;">
+                    <h5 class="card-title">Atti Vegan 65</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Best red GPU on the market</h6>
+                      <p class="card-text">
+                      Hashrate: <span data-rig-hashrate="1-6-1">250000 Hash/s</span> 
+                        <br>
+                        Cost: <span data-price-next-rig="6-1">75000000000</span>
+                      </p>
+                      <div class="buy_toggle btn-group btn-group-toggle" data-toggle="buttons">
+                          <label data-buyrig-count="6-1" class="btn btn-secondary active ">
+                            <input type="radio" name="options_buy" value="1" autocomplete="off" checked=""> 1x
+                          </label>
+                          <label data-buyrig-count="6-5" class="btn btn-secondary">
+                            <input type="radio" name="options_buy" value="5" autocomplete="off"> 5x
+                          </label>
+                          <label data-buyrig-count="6-1000" class="btn btn-secondary ">
+                            <input type="radio" name="options_buy" value="1000" autocomplete="off"> All
+                          </label>
+        
+                        </div> 
+                      <button type="button" data-buyrig-button="6" class="buy_rig btn btn-success beauty_button_mid">Buy</button>
+                      <button type="button" data-maxrig-button="6" style="display: none" class=" btn btn-outline-success beauty_button_mid">MAX</button>
+                    </div>
+              </div><div class="card" style="width: 15.5rem; display: none;" data-card="1-7-1"> <!-- Data: category,id,count, -->
+                <span class="owned_card" style="display: none;" data-owned="1-7" data-owned-count-rig="7"></span> <!-- Data: category,id -->
+                    <img class="card-img-top" src="images/asic.png" alt="Card image cap">
+                    
+                    <div class="card-body" data-rig-locked="7" style="display: none;">
+                              <h5 class="card-title">ASIC miner</h5> 
+                              <h6 class="card-subtitle mb-2 text-muted">No way to resist him</h6>
+                              <p class="card-text">
+                                Hashrate: <span data-rig-hashrate="1-7-1">1500000 Hash/s</span> 
+                                <br>
+                                Unlock Cost: <span data-buyrig-unlock-button="7-1">12500000000000</span>
+                              </p> 
+                              <button type="button" data-buyrig-unlock-button="7" class="unlock_rig btn btn-success beauty_button_big">Unlock</button>
+                     </div>  
+        
+                    <div class="card-body" data-rig-unlocked="7" style="display: none;">
+                    <h5 class="card-title">ASIC miner</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">No way to resist him</h6>
+                      <p class="card-text">
+                      Hashrate: <span data-rig-hashrate="1-7-1">1500000 Hash/s</span> 
+                        <br>
+                        Cost: <span data-price-next-rig="7-1">2500000000000</span>
+                      </p>
+                      <div class="buy_toggle btn-group btn-group-toggle" data-toggle="buttons">
+                          <label data-buyrig-count="7-1" class="btn btn-secondary active ">
+                            <input type="radio" name="options_buy" value="1" autocomplete="off" checked=""> 1x
+                          </label>
+                          <label data-buyrig-count="7-5" class="btn btn-secondary">
+                            <input type="radio" name="options_buy" value="5" autocomplete="off"> 5x
+                          </label>
+                          <label data-buyrig-count="7-1000" class="btn btn-secondary ">
+                            <input type="radio" name="options_buy" value="1000" autocomplete="off"> All
+                          </label>
+        
+                        </div> 
+                      <button type="button" data-buyrig-button="7" class="buy_rig btn btn-success beauty_button_mid">Buy</button>
+                      <button type="button" data-maxrig-button="7" style="display: none" class=" btn btn-outline-success beauty_button_mid">MAX</button>
+                    </div>
+              </div>
+              <!-- RIG ITEMS -->     
+
+
+            </div>  
+      </div>    
+    <!-- Cards End --> 
+    <!-- UPGRADES -->
+    <div class="col-4">    
+
+        <!-- BOOSTER-->
+              <div class="card" style="width: 16rem; display: none;" data-card="4-0-1"> <!-- Data: category,id,count, -->
+                <img class="card-img-top" data-booster-image="4-0-1" src="">
+                <div class="card-body">
+                <h5 class="card-title" data-booster-name="4-0-1"></h5>
+                <h6 class="card-subtitle mb-2 text-muted" data-booster-desc="4-0-1"></h6>
+                  <p class="card-text">
+                  <span data-booster-spec="4-0-1"></span>
+                    <br>
+                  <span data-booster-cost="4-0-1"></span>
+                  </p>
+                    <div class="input-group">
+                        <button type="button" data-booster-button="0" style="display: none" class="buy_booster btn btn-success beauty_button_big">Buy!</button>
+                        <button type="button" data-booster-own-button="0" style="display: none" class="btn btn btn-outline-success beauty_button_big">Owned</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card" style="width: 16rem; display: none;" data-card="4-1-1"> <!-- Data: category,id,count, -->
+                <img class="card-img-top" data-booster-image="4-1-1" src="">
+                <div class="card-body">
+                <h5 class="card-title" data-booster-name="4-1-1"></h5>
+                <h6 class="card-subtitle mb-2 text-muted" data-booster-desc="4-1-1"></h6>
+                  <p class="card-text">
+                  <span data-booster-spec="4-1-1"></span>
+                    <br>
+                  <span data-booster-cost="4-1-1"></span>
+                  </p>
+                    <div class="input-group">
+                        <button type="button" data-booster-button="1" style="display: none" class="buy_booster btn btn-success beauty_button_big">Buy!</button>
+                        <button type="button" data-booster-own-button="1" style="display: none" class="btn btn btn-outline-success beauty_button_big">Owned</button>
+                    </div>
+                </div>
+            </div>
+
+      <!-- BOOSTER -->
+        
+      </div>
+
+            </div>
+      </div>
+   </section>
+
+    </main>
+
+
+    <prologe>
+    <section>
+        <div class="container">
+              <div class="row">
+                  <div class="col-12">
+                      <center><h1>Welcome to Rigwars, the cryptomining Idle game!</h1></center>
+                    <br>
+                    <h3>How to play:</h3>
+                    - Install Metamask or Trust Wallet<br>
+                    <center>
+                        <a href="index-1.htm" target="_blank"><img src="images/metamask.png" width="33%"></a>
+                    </center>
+                    <br>
+                    - Have an account with some amount of BNB
+                    <br>
+                    - Press the Start Game button!
+                    <br>
+                    <center>
+                        <button type="button" id="start" class="btn btn-success btn-lg ">Start game</button> <a class="btn btn-primary btn-lg" href="address/0x3778e7d8365781def978a6ddd658409ea299c1e9.html" target="_blank">Contract</a>
+                    </center>  
+
+                    <h3>Game guide:</h3>
+                    - RigWars designed to be an almost infinite Idle game, which will need your action every day to maintain your Rigs just like Cryptomining in real life.<br>
+                    <center>
+                    <b>Your Dashboard:</b><br>
+                    <img src="images/dashboard.png" width="50%"> 
+                  </center> 
+                  <b>Game components:</b>
+                  <ul class="game-components">
+                    <li><b>Rig Parts:</b><br> - You can buy 8th different Mining solution from Cloud Mining -> Quantum Computer, to unlock the next level you should pay extra price.</li>
+                   
+                    <li><b>Prestige level:</b><br> - You can Upgrade your prestige which will give you permanent Hashrate increase, but it will reset your balance to 0 and half the numbers of your Rigs.<br>Keep in mind 
+                    that you can't reach some part of the game without upgrading your Prestige!</li>
+                   
+                    <li><b>Boosters:</b><br> - There are rare items in the game which can be invested by Eth, these are giving you permanent bonuses while you are owner of them. You can be outbuyed any time then you will get back your investment!</li>
+
+                    <li><b>ICO:</b><br> - Every day a new ICO start, with investing your Tokens into ICO allow you to get share from the Contract HODL!</li>
+                  
+                    <li><b>Rig Token:</b><br> - Your RigWars balance are fully implemented ERC-20 Tokens, 1 RigToken worth 100.000.000 RigCoin you can Trade RigToken on Forkdelta or other Exchanges.</li>
+                  
+                    <li><b>Referral system:</b><br> - Ref your friend or promote Rigwars without any limitation you will get 50% of their Prestige level up cost. You can find your referral link in the footer.</li>
+
+                  </ul>
+                  
+
+                  </div>  
+
+
+
+
+              </div>
+          </div>
+        </section>
+    </prologe>
+
+
+
+
+
+
+
+
+    <div id="metamask_alert" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Metamask Alert!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div id="metamask_alert_message" class="modal-body">
+            <p>Please install or activate your Metamask Plugin in your browser. <br> You can't play RigWars without Metamask installed.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="leaderboard_modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog leaderboard" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Leaderboard - (Ask Allias on Discord)</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <table class="table table-borderless">
+                  <thead>
+                    <tr>
+                      <th>Address</th>
+                      <th>Prestige</th>
+                      <th>Balance</th>
+                    </tr>
+                  </thead>
+                  <tbody id="leaderboard_modal_content">
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>  
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Back to top</a>
+        </p>
+        <p>Just a game! <span id="reflink"></span>  </p>
+      </div>
+    </footer>
+
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+
+    <script defer="" src="beacon.min.js" data-cf-beacon='{"rayId":"68a8628b989721af","version":"2021.8.1","r":1,"token":"7a5717b4430444e5aaefbd54c1ea5ff1","si":10}'></script>
+</body>
+</html>
